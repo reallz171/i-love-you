@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Meu Site</title>
+  <title>Pedido</title>
   <style>
-    /* CSS do seu CodePen */
     body {
       background-color: black;
       display: flex;
@@ -16,10 +15,12 @@
     }
 
     .texto {
-      font-size: 5rem;
+      font-size: 3.5rem;
       color: white;
       font-family: Arial, Helvetica, sans-serif;
       position: relative;
+      text-align: center;
+      max-width: 90%;
     }
 
     .cursor {
@@ -42,9 +43,14 @@
   <div class="texto" id="texto">Opa<span class="cursor"></span></div>
 
   <script>
-    // JS do seu CodePen
     const texto = document.getElementById("texto");
-    const palavras = ["Tudo bem?", "Seja bem-vindo!", "Aproveite o site!"];
+    const palavras = [
+      "Oi amor...",
+      "Desde que te conheci, tudo mudou.",
+      "Você é meu porto seguro, minha felicidade.",
+      "E hoje eu tenho uma pergunta muito especial...",
+      "Você quer casar comigo?"
+    ];
     let palavraIndex = 0;
     let letraIndex = 0;
     let apagando = false;
@@ -56,7 +62,7 @@
         letraIndex++;
         if (letraIndex === palavraAtual.length) {
           apagando = true;
-          setTimeout(digitar, 1000);
+          setTimeout(digitar, 1500);
           return;
         }
       } else {
@@ -67,10 +73,10 @@
           palavraIndex = (palavraIndex + 1) % palavras.length;
         }
       }
-      setTimeout(digitar, apagando ? 50 : 150);
+      setTimeout(digitar, apagando ? 50 : 120);
     }
 
     setTimeout(digitar, 1000);
   </script>
 </body>
-  </html>
+</html>
