@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meu Site</title>
+  <style>
+    /* CSS do seu CodePen */
+    body {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .texto {
+      font-size: 5rem;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      position: relative;
+    }
+
+    .cursor {
+      display: inline-block;
+      background-color: white;
+      width: 10px;
+      height: 1em;
+      margin-left: 5px;
+      animation: blink 0.7s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="texto" id="texto">Opa<span class="cursor"></span></div>
+
+  <script>
+    // JS do seu CodePen
+    const texto = document.getElementById("texto");
+    const palavras = ["Tudo bem?", "Seja bem-vindo!", "Aproveite o site!"];
+    let palavraIndex = 0;
+    let letraIndex = 0;
+    let apagando = false;
+
+    function digitar() {
+      const palavraAtual = palavras[palavraIndex];
+      if (!apagando) {
+        texto.childNodes[0].nodeValue = palavraAtual.substring(0, letraIndex + 1);
+        letraIndex++;
+        if (letraIndex === palavraAtual.length) {
+          apagando = true;
+          setTimeout(digitar, 1000);
+          return;
+        }
+      } else {
+        texto.childNodes[0].nodeValue = palavraAtual.substring(0, letraIndex - 1);
+        letraIndex--;
+        if (letraIndex === 0) {
+          apagando = false;
+          palavraIndex = (palavraIndex + 1) % palavras.length;
+        }
+      }
+      setTimeout(digitar, apagando ? 50 : 150);
+    }
+
+    setTimeout(digitar, 1000);
+  </script>
+</body>
+  </html>
